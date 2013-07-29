@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-unless File.exists?("/Application/Limechat.app")
+unless File.exists?("/Applications/LimeChat.app")
 
   version = "2.34"
 
