@@ -10,10 +10,10 @@ git "#{ENV['HOME']}/.vim/neobundle.vim.git" do
 end
 
 # works fine ???
-#execute "neobundleinstall" do
-#  command "/usr/bin/vim -c NeoBundleInstall -c qall!"
+execute "neobundleinstall" do
+  command "/usr/bin/vim -e -s -c NeoBundleInstall -c qall!"
 #  action :nothing
-#  user node['current_user']
-#  cwd ENV['HOME']
-#end
+  user node['current_user']
+  cwd ENV['HOME']
+end
 
