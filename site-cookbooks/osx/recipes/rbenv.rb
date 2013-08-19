@@ -24,10 +24,10 @@ node["rbenv"]["user_installs"].each do |rbenv_config|
       pkg = h["name"]
       execute "gem-install-#{pkg}-in-#{version}" do
         user rbenv_config["user"]
-        environment ({'HOME' => "/Users/#{rbenv_config['user']}", 'RUBY_VERSION' => version})
+        environment ({'HOME' => "/Users/#{rbenv_config['user']}", 'RBENV_VERSION' => version})
         command "gem install #{pkg}"
 
-        not_if "gem list | grep -w '^#{pkg} ' "
+        not_if "RBENV_VERSION=#{version} gem list | grep '^#{pkg} ' "
       end
     end
   end
@@ -36,7 +36,7 @@ node["rbenv"]["user_installs"].each do |rbenv_config|
 end
 
 %w(/etc/profile /etc/zshenv).each do |profile|
-  execute "add-rbenv-setting-to-user-profile" do
+  execute "add rbenv setting to #{profile}" do
     command %{ test -e #{profile} && echo 'eval "$(/usr/local/bin/rbenv init -)"' >> #{profile} }
     not_if "grep 'rbenv init' #{profile}"
   end
