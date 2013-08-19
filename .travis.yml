@@ -2,4 +2,4 @@ language: ruby
 before_script:
   - cd foodcritic
   - bundle install
-script: bundle exec foodcritic ../site-cookbooks/osx
+script: bundle exec foodcritic ..
