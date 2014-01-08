@@ -37,7 +37,7 @@ end
 
 %w(/etc/profile /etc/zshenv).each do |profile|
   execute "add rbenv setting to #{profile}" do
-    command %{ test -e #{profile} && echo 'eval "$(/usr/local/bin/rbenv init -)"' >> #{profile} }
+    command %{ test -e #{profile} && echo 'eval "$(/usr/local/bin/rbenv init -)"; PATH=~/.rbenv/shims:$PATH' >> #{profile} }
     not_if "grep 'rbenv init' #{profile}"
   end
 end
